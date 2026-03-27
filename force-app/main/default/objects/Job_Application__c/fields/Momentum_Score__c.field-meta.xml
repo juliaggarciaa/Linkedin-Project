@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Momentum_Score__c</fullName>
+    <label>Momentum Score</label>
+    <type>Number</type><formula>CASE(Application_Stage__c, "Saved", 10, "Applied", 30, "Recruiter Screen", 50, "Interview", 70, "Final Round", 90, "Offer", 100, 0)</formula><formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs><precision>18</precision><scale>0</scale>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+</CustomField>

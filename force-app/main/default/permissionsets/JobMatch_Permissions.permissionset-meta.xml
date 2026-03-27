@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>JobMatch Permissions</label>
+    
+    <fieldPermissions><editable>true</editable><field>My_Resume__c.Skills__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>My_Resume__c.Experience_Summary__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>My_Resume__c.Education__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>My_Resume__c.Years_of_Experience__c</field><readable>true</readable></fieldPermissions>
+
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Role_Title__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Company_Name__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Match_Score__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Why_It_Fits__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Skill_Gap__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Apply_URL__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Status__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Tailored_Resume__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Cover_Letter__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Outreach_Message__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Interview_Questions__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Suggestion__c.Rejection_Analysis__c</field><readable>true</readable></fieldPermissions>
+
+    <fieldPermissions><editable>true</editable><field>Job_Application__c.Job_Suggestion__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Application__c.Application_Stage__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Application__c.Date_Applied__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>false</editable><field>Job_Application__c.Momentum_Score__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Application__c.Last_Activity_Date__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Job_Application__c.Notes__c</field><readable>true</readable></fieldPermissions>
+
+    <fieldPermissions><editable>true</editable><field>Contact.Relationship_Warmth__c</field><readable>true</readable></fieldPermissions>
+    <fieldPermissions><editable>true</editable><field>Contact.LinkedIn_URL__c</field><readable>true</readable></fieldPermissions>
+
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>My_Resume__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Job_Suggestion__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Job_Application__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+
+    <tabSettings>
+        <tab>My_Resume__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Job_Suggestion__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Job_Application__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+</PermissionSet>
