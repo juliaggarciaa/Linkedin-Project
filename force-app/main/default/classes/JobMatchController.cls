@@ -32,4 +32,36 @@ public with sharing class JobMatchController {
         }
         insert newSugg;
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Map<String, Object>> getPipelineData() {
+        List<String> validStages = new List<String>{'Saved', 'Applied', 'Recruiter Screen', 'Interview', 'Final Round', 'Offer', 'Rejected/Withdrawn'};
+        Map<String, List<Object>> stageMap = new Map<String, List<Object>>();
+        for (String s : validStages) stageMap.put(s, new List<Object>());
+
+        List<Job_Application__c> apps = [SELECT Id, Job_Suggestion__r.Role_Title__c, Job_Suggestion__r.Company_Name__c, Application_Stage__c, Momentum_Score__c 
+                                        FROM Job_Application__c ORDER BY CreatedDate DESC];
+        
+        for (Job_Application__c a : apps) {
+            String stage = a.Application_Stage__c != null ? a.Application_Stage__c : 'Saved';
+            if (stageMap.containsKey(stage)) {
+                stageMap.get(stage).add(new Map<String, Object>{
+                    'Id' => a.Id,
+                    'role' => a.Job_Suggestion__r.Role_Title__c,
+                    'company' => a.Job_Suggestion__r.Company_Name__c,
+                    'score' => a.Momentum_Score__c
+                });
+            }
+        }
+
+        List<Map<String, Object>> result = new List<Map<String, Object>>();
+        for (String s : validStages) {
+            result.add(new Map<String, Object>{
+                'name' => s, 
+                'apps' => stageMap.get(s),
+                'appCount' => (Integer)stageMap.get(s).size()
+            });
+        }
+        return result;
+    }
 }

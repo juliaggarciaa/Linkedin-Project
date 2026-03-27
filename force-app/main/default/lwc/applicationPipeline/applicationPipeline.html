@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Application Pipeline" icon-name="standard:kanban">
+        <div class="slds-p-around_medium pipeline-container">
+            <div class="slds-grid slds-grid_vertical-align-start slds-scrollable_x">
+                <template if:true={stages}>
+                    <template for:each={stages} for:item="stage">
+                        <div key={stage.name} class="slds-col slds-size_1-of-5 slds-p-around_x-small stage-column">
+                            <div class="slds-text-title_caps slds-m-bottom_small slds-p-horizontal_small stage-title">
+                                {stage.name} ({stage.appCount})
+                            </div>
+                            <template for:each={stage.apps} for:item="app">
+                                <lightning-card key={app.Id} class="slds-m-bottom_small app-card">
+                                    <div class="slds-p-horizontal_small">
+                                        <p class="slds-text-title_bold">{app.role}</p>
+                                        <p class="slds-text-body_small">{app.company}</p>
+                                        <div class="slds-m-top_small slds-grid slds-grid_align-spread">
+                                            <span class="slds-badge">Score: {app.score}</span>
+                                            <lightning-button-icon icon-name="utility:forward" onclick={handleNavigate} data-id={app.Id}></lightning-button-icon>
+                                        </div>
+                                    </div>
+                                </lightning-card>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

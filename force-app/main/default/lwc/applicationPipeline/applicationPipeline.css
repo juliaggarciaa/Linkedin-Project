@@ -1,0 +1,4 @@
+.pipeline-container { min-height: 400px; }
+.stage-column { min-width: 250px; background: #f3f3f3; border-radius: 4px; margin: 0 4px; padding: 12px; }
+.stage-title { font-weight: bold; border-bottom: 2px solid #0070D2; }
+.app-card { background: white; border: 1px solid #ddd; }
