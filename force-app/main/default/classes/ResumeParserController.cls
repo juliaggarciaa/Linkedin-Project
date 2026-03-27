@@ -25,12 +25,32 @@ public with sharing class ResumeParserController {
             resume = resumes[0];
         }
         
-        resume.Skills__c = (String)parsed.get('skills');
-        resume.Experience_Summary__c = (String)parsed.get('summary');
-        resume.Education__c = (String)parsed.get('education');
-        String yrs = String.valueOf(parsed.get('yearsExperience'));
-        resume.Years_of_Experience__c = Decimal.valueOf(yrs.replaceAll('[^0-9.]', ''));
+        resume.Skills__c = formatField(parsed.get('skills'));
+        resume.Experience_Summary__c = formatField(parsed.get('summary'));
+        resume.Education__c = formatField(parsed.get('education'));
+        
+        Object yearsExpObj = parsed.get('yearsExperience');
+        if (yearsExpObj != null) {
+            String yrs = String.valueOf(yearsExpObj);
+            // Only attempt conversion if the string is not 'null' and not blank
+            if (!yrs.equalsIgnoreCase('null') && String.isNotBlank(yrs)) {
+                String cleanedYrs = yrs.replaceAll('[^0-9.]', '');
+                if (String.isNotBlank(cleanedYrs)) {
+                    resume.Years_of_Experience__c = Decimal.valueOf(cleanedYrs);
+                }
+            }
+        }
         
         upsert resume;
+    }
+
+    private static String formatField(Object val) {
+        if (val == null) return '';
+        if (val instanceof List<Object>) {
+            List<String> items = new List<String>();
+            for (Object o : (List<Object>)val) items.add(String.valueOf(o));
+            return String.join(items, ', ');
+        }
+        return String.valueOf(val);
     }
 }
