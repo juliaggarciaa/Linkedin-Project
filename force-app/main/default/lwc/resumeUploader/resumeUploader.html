@@ -1,8 +1,29 @@
 <template>
-    <lightning-card title="Resume Upload" icon-name="standard:document">
+    <lightning-card title="Resume Upload" icon-name="standard:file">
         <div class="slds-p-around_medium">
-            <lightning-textarea label="Paste Resume Text" value={resumeText} onchange={handleTextChange} class="slds-m-bottom_small"></lightning-textarea>
-            <lightning-button variant="brand" label="Parse My Resume" onclick={handleParse} loading={isLoading}></lightning-button>
+            <p class="slds-m-bottom_medium">Upload your resume (Supported: .txt, .md). The AI will automatically extract your skills and experience.</p>
+            
+            <div class="slds-box slds-box_x-small slds-theme_shade slds-m-bottom_medium">
+                <input type="file" class="slds-file-selector__input" id="file-input" onchange={handleFileChange} accept=".txt,.md,.text" />
+                <label class="slds-file-selector__body" for="file-input">
+                    <span class="slds-file-selector__button slds-button slds-button_neutral">
+                        <lightning-icon icon-name="utility:upload" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                        Choose File
+                    </span>
+                </label>
+            </div>
+
+            <template if:true={fileName}>
+                <p class="slds-m-bottom_small">Selected: <strong>{fileName}</strong></p>
+                <lightning-button label="Extract & Parse" variant="brand" onclick={handleParse} loading={isLoading} icon-name="utility:richtext_bulleted_list"></lightning-button>
+            </template>
+
+            <template if:true={isLoading}>
+                <div class="slds-m-top_medium">
+                    <lightning-spinner alternative-text="Parsing..." size="small"></lightning-spinner>
+                    <p class="slds-text-align_center">AI is analyzing your resume...</p>
+                </div>
+            </template>
         </div>
     </lightning-card>
 </template>
