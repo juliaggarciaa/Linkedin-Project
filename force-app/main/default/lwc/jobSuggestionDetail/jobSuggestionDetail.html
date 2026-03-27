@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="AI Generated Docs" icon-name="standard:drafts">
+        <div class="slds-p-around_medium">
+            <lightning-button label="Generate All Docs" variant="brand" onclick={handleGenerate} class="slds-m-bottom_medium"></lightning-button>
+            <lightning-accordion active-section-name="resume">
+                <lightning-accordion-section name="resume" label="Tailored Resume">
+                    <pre class="slds-box">{record.Tailored_Resume__c}</pre>
+                </lightning-accordion-section>
+                <lightning-accordion-section name="cover" label="Cover Letter">
+                    <pre class="slds-box">{record.Cover_Letter__c}</pre>
+                </lightning-accordion-section>
+                <lightning-accordion-section name="outreach" label="Outreach Message">
+                    <pre class="slds-box">{record.Outreach_Message__c}</pre>
+                </lightning-accordion-section>
+            </lightning-accordion>
+        </div>
+    </lightning-card>
+</template>

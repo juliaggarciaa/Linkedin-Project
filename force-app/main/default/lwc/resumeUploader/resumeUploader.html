@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Resume Upload" icon-name="standard:document">
+        <div class="slds-p-around_medium">
+            <lightning-textarea label="Paste Resume Text" value={resumeText} onchange={handleTextChange} class="slds-m-bottom_small"></lightning-textarea>
+            <lightning-button variant="brand" label="Parse My Resume" onclick={handleParse} loading={isLoading}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

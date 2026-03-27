@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Job Match Dashboard" icon-name="standard:dashboard">
+        <div class="slds-p-around_medium">
+            <lightning-button label="Find My Jobs" variant="brand" onclick={handleFindJobs} class="slds-m-bottom_medium" loading={isLoading}></lightning-button>
+            <template if:true={suggestions}>
+                <div class="slds-grid slds-wrap">
+                    <template for:each={suggestions} for:item="job">
+                        <div key={job.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_small">
+                            <lightning-card title={job.Role_Title__c} icon-name="standard:case">
+                                <div class="slds-p-horizontal_small">
+                                    <p class="slds-text-title_bold">{job.Company_Name__c}</p>
+                                    <div class="slds-m-vertical_small">
+                                        <span class="slds-badge slds-theme_success">Match: {job.Match_Score__c}%</span>
+                                    </div>
+                                    <p class="slds-m-bottom_small">{job.Why_It_Fits__c}</p>
+                                    <div class="slds-grid slds-grid_align-spread">
+                                        <lightning-button label="View Details" data-id={job.Id} onclick={handleView}></lightning-button>
+                                        <lightning-button label="Apply" icon-name="utility:new_window" data-url={job.Apply_URL__c} onclick={handleApply} variant="neutral"></lightning-button>
+                                    </div>
+                                </div>
+                            </lightning-card>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
