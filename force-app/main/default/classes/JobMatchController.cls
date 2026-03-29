@@ -64,4 +64,24 @@ public with sharing class JobMatchController {
         }
         return result;
     }
+
+    @AuraEnabled
+    public static String createApplication(String suggestionId) {
+        try {
+            Job_Application__c app = new Job_Application__c(
+                Job_Suggestion__c = (Id)suggestionId,
+                Application_Stage__c = 'Applied',
+                Date_Applied__c = Date.today()
+            );
+            insert app;
+
+            update new Job_Suggestion__c(
+                Id = suggestionId,
+                Status__c = 'Applied'
+            );
+            return app.Id;
+        } catch (Exception e) {
+            throw new AuraHandledException('Error creating application: ' + e.getMessage());
+        }
+    }
 }

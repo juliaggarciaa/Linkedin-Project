@@ -18,8 +18,21 @@ export default class JobSuggestionDetail extends LightningElement {
             .catch(error => console.error(error));
     }
 
+    handleDownload() {
+        const element = document.createElement('a');
+        const file = new Blob([this.record.Tailored_Resume__c], {type: 'text/plain'});
+        element.href = URL.createObjectURL(file);
+        element.download = `Tailored_Resume_${this.recordId}.txt`;
+        document.body.appendChild(element); // Required for this to work in FireFox
+        element.click();
+    }
+
+    get isDownloadDisabled() {
+        return !this.record.Tailored_Resume__c;
+    }
+
     get record() {
-        if (!this.job.data) return {};
+        if (!this.job || !this.job.data) return {};
         return {
             Tailored_Resume__c: this.job.data.fields.Tailored_Resume__c.value,
             Cover_Letter__c: this.job.data.fields.Cover_Letter__c.value,

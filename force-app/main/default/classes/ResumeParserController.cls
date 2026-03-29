@@ -1,9 +1,21 @@
 public with sharing class ResumeParserController {
     @AuraEnabled
-    public static void parseResume(String rawText) {
-        // Prepare the prompt
+    public static void parseResume(String rawText, String base64PDF) {
+        String contentToParse = rawText;
+        
+        // If it's a PDF, we first extract the text using Groq
+        if (String.isNotBlank(base64PDF)) {
+            String extractPrompt = 'Extract all text content from this base64-encoded PDF resume and return it as plain text. Do not add any explanation or greeting. Just return the extracted text: ' + base64PDF.left(30000); // Limit to avoid token issues
+            contentToParse = GroqService.callGroq(extractPrompt);
+        }
+
+        if (String.isBlank(contentToParse)) {
+            throw new AuraHandledException('Resume content is empty.');
+        }
+
+        // Prepare the parsing prompt
         String prompt = 'Parse the following resume and return ONLY a JSON object with keys: "skills", "summary", "education", "yearsExperience". ' +
-                      'Resume: ' + rawText;
+                      'Resume: ' + contentToParse;
         
         // Perform the callout FIRST (before any DML)
         String response = GroqService.callGroq(prompt);
@@ -25,6 +37,7 @@ public with sharing class ResumeParserController {
             resume = resumes[0];
         }
         
+        resume.Raw_Resume_Text__c = contentToParse;
         resume.Skills__c = formatField(parsed.get('skills'));
         resume.Experience_Summary__c = formatField(parsed.get('summary'));
         resume.Education__c = formatField(parsed.get('education'));

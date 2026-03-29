@@ -4,6 +4,9 @@
             <lightning-button label="Generate All Docs" variant="brand" onclick={handleGenerate} class="slds-m-bottom_medium"></lightning-button>
             <lightning-accordion active-section-name="resume">
                 <lightning-accordion-section name="resume" label="Tailored Resume">
+                    <div class="slds-m-bottom_small">
+                        <lightning-button label="Download Tailored Resume (.txt)" icon-name="utility:download" onclick={handleDownload} disabled={isDownloadDisabled}></lightning-button>
+                    </div>
                     <pre class="slds-box">{record.Tailored_Resume__c}</pre>
                 </lightning-accordion-section>
                 <lightning-accordion-section name="cover" label="Cover Letter">

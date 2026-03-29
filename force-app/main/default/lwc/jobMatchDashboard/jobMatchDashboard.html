@@ -15,7 +15,7 @@
                                     <p class="slds-m-bottom_small">{job.Why_It_Fits__c}</p>
                                     <div class="slds-grid slds-grid_align-spread">
                                         <lightning-button label="View Details" data-id={job.Id} onclick={handleView}></lightning-button>
-                                        <lightning-button label="Apply" icon-name="utility:new_window" data-url={job.Apply_URL__c} onclick={handleApply} variant="neutral"></lightning-button>
+                                        <lightning-button label="Apply" icon-name="utility:new_window" data-url={job.Apply_URL__c} data-id={job.Id} onclick={handleApply} variant="neutral"></lightning-button>
                                     </div>
                                 </div>
                             </lightning-card>

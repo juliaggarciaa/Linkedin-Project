@@ -1,10 +1,10 @@
 <template>
     <lightning-card title="Resume Upload" icon-name="standard:file">
         <div class="slds-p-around_medium">
-            <p class="slds-m-bottom_medium">Upload your resume (Supported: .txt, .md). The AI will automatically extract your skills and experience.</p>
+            <p class="slds-m-bottom_medium">Upload your resume (.pdf, .txt, .md). Our AI will automatically extract your skills, experience, and history.</p>
             
             <div class="slds-box slds-box_x-small slds-theme_shade slds-m-bottom_medium">
-                <input type="file" class="slds-file-selector__input" id="file-input" onchange={handleFileChange} accept=".txt,.md,.text" />
+                <input type="file" class="slds-file-selector__input" id="file-input" onchange={handleFileChange} accept=".pdf,.txt,.md,.text" />
                 <label class="slds-file-selector__body" for="file-input">
                     <span class="slds-file-selector__button slds-button slds-button_neutral">
                         <lightning-icon icon-name="utility:upload" size="x-small" class="slds-m-right_x-small"></lightning-icon>
